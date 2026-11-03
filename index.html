@@ -1,0 +1,110 @@
+<!doctype html><html lang=vi><head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=theme-color content="#0a0f1e">
+<meta name=apple-mobile-web-app-capable content=yes><title>Smart Classroom</title>
+<style>
+:root{--bg:#0a0f1e;--s1:#121a30;--s2:#1a2440;--ln:#243157;--tx:#eef2ff;--mu:#8b9bc8;--ac:#5b8cff;--ac2:#8b5cf6;--on:#ffc833;--ok:#22d39a;--wn:#ff9f43;--bd:#ff5d73;--r:22px}
+@media(prefers-color-scheme:light){:root{--bg:#f1f4fc;--s1:#fff;--s2:#eef2fb;--ln:#dbe2f3;--tx:#111b38;--mu:#63739d}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;min-height:100vh;background:radial-gradient(900px 500px at 85% -10%,#5b8cff22,transparent),radial-gradient(700px 400px at -10% 10%,#8b5cf622,transparent),var(--bg);color:var(--tx);font:15px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding-bottom:92px}
+button,input{font:inherit;color:inherit}
+header{position:sticky;top:0;z-index:9;display:flex;justify-content:space-between;align-items:center;padding:12px 18px;padding-top:calc(12px + env(safe-area-inset-top));background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--ln)}
+.brand{display:flex;gap:12px;align-items:center}.logo{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;font-size:20px;background:linear-gradient(135deg,var(--ac),var(--ac2));box-shadow:0 6px 18px #5b8cff55}
+.brand b{display:block;font-size:16px}.brand small,.mu{color:var(--mu);font-size:12px}
+.hd{display:flex;align-items:center;gap:10px;font-variant-numeric:tabular-nums;font-weight:600}.dot{width:10px;height:10px;border-radius:50%;background:var(--bd);box-shadow:0 0 0 4px #ff5d7322}.dot.ok{background:var(--ok);box-shadow:0 0 0 4px #22d39a22}
+.banner{background:var(--bd);color:#fff;text-align:center;padding:8px;font-size:13px;font-weight:600}
+main{max-width:860px;margin:auto;padding:16px}.pg{display:none;gap:14px}.pg.on{display:grid;animation:in .3s}@keyframes in{from{opacity:0;transform:translateY(8px)}}
+.card{background:linear-gradient(180deg,var(--s1),color-mix(in srgb,var(--s1) 92%,var(--ac)));border:1px solid var(--ln);border-radius:var(--r);padding:18px}
+.card h3{margin:0 0 14px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);font-weight:700}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--s2);border-radius:16px;padding:5px;position:relative}
+.seg button{border:0;background:none;padding:13px 8px;border-radius:12px;font-weight:700;color:var(--mu);z-index:1;transition:.25s;display:flex;justify-content:center;gap:8px}
+.seg button.on{color:#fff;background:linear-gradient(135deg,var(--ac),var(--ac2));box-shadow:0 6px 18px #5b8cff55}
+.hint{margin:12px 2px 0;font-size:13px;color:var(--mu)}
+.row2{display:grid;grid-template-columns:1.2fr 1fr;gap:14px}@media(max-width:520px){.row2{grid-template-columns:1fr}}
+.ring{position:relative;width:170px;height:170px;margin:4px auto 10px}.ring svg{transform:rotate(-90deg)}.ring circle{fill:none;stroke-width:12;stroke-linecap:round}
+.ring .bg{stroke:var(--s2)}.ring .fg{stroke:var(--ok);transition:stroke-dasharray .8s,stroke .4s}
+.ring div{position:absolute;inset:0;display:grid;place-content:center;text-align:center}.ring b{font-size:38px;line-height:1}.ring span{font-size:12px;color:var(--mu)}
+.badge{display:inline-block;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:700;background:#22d39a22;color:var(--ok)}
+.sens{display:flex;justify-content:space-around;margin-top:12px;text-align:center}.sens b{display:block;font-size:18px}
+.rad{position:relative;width:96px;height:96px;margin:6px auto 12px;display:grid;place-items:center;font-size:36px}
+.rad:before,.rad:after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--mu);opacity:.25}
+.rad.on:before,.rad.on:after{border-color:var(--ok);animation:pu 2s infinite}.rad.on:after{animation-delay:1s}@keyframes pu{from{transform:scale(.5);opacity:.8}to{transform:scale(1.25);opacity:0}}
+.c{text-align:center}.c b{font-size:18px;display:block}
+.pw{display:flex;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px solid var(--ln)}.pw b{font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}@media(max-width:520px){.grid{grid-template-columns:repeat(2,1fr)}}
+.lamp{display:grid;justify-items:center;gap:8px;padding:16px 8px;border-radius:20px;background:var(--s2);border:1.5px solid transparent;cursor:pointer;font-weight:600;font-size:13px;transition:.25s}
+.lamp svg{width:44px;height:44px;fill:#3d4b78;transition:.3s}.lamp small{font-weight:500;color:var(--mu);font-size:11px}
+.lamp.on{border-color:var(--on);background:color-mix(in srgb,var(--on) 10%,var(--s2));box-shadow:0 0 28px #ffc83335}.lamp.on svg{fill:var(--on);filter:drop-shadow(0 0 9px var(--on))}
+.lamp:active:not(:disabled){transform:scale(.95)}.lamp:disabled{cursor:not-allowed;opacity:.7}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.btn{border:0;border-radius:14px;padding:14px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--ac),var(--ac2));cursor:pointer;transition:.2s}.btn.g{background:var(--s2);color:var(--tx)}.btn:disabled{opacity:.45}.btn:active{transform:scale(.98)}
+.fld{display:grid;gap:8px;margin-bottom:16px}.fld>div{display:flex;justify-content:space-between;align-items:baseline}.fld b{color:var(--ac)}.fld label{font-weight:600}
+input[type=range]{width:100%;accent-color:var(--ac);height:28px}
+input[type=time]{width:100%;padding:13px;border-radius:14px;border:1px solid var(--ln);background:var(--s2);font-size:17px}
+.tg{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--ln)}.tg:last-of-type{border:0}.tg small{display:block}
+.sw{position:relative;width:52px;height:30px;flex:none}.sw input{display:none}.sw i{position:absolute;inset:0;background:#3a4875;border-radius:99px;transition:.25s}
+.sw i:after{content:"";position:absolute;width:24px;height:24px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.25s}.sw input:checked+i{background:var(--ok)}.sw input:checked+i:after{transform:translateX(22px)}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+.kv{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--ln);font-size:14px}.kv:last-child{border:0}.kv span:first-child{color:var(--mu)}
+nav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom));display:flex;gap:6px;padding:6px;border-radius:22px;background:color-mix(in srgb,var(--s1) 88%,transparent);backdrop-filter:blur(18px);border:1px solid var(--ln);box-shadow:0 10px 30px #0006;z-index:9}
+nav button{border:0;background:none;padding:10px 26px;border-radius:16px;color:var(--mu);font-weight:700;font-size:13px;display:grid;justify-items:center;gap:2px}nav button.on{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff}nav span{font-size:19px}
+#toast{position:fixed;top:78px;left:50%;transform:translate(-50%,-30px);background:var(--ok);color:#052;padding:10px 20px;border-radius:99px;font-weight:700;opacity:0;transition:.3s;z-index:20}#toast.s{opacity:1;transform:translate(-50%,0)}
+</style></head><body>
+<header><div class=brand><div class=logo>💡</div><div><b>Smart Classroom</b><small>Điều khiển chiếu sáng</small></div></div><div class=hd><span id=tm>--:--</span><i class=dot id=dot></i></div></header>
+<div class=banner id=off hidden>Mất kết nối với thiết bị – đang thử lại…</div><div id=toast>Đã lưu</div>
+<main>
+<section class="pg on" id=p1>
+ <div class=card><div class=seg><button id=mM>✋ Thủ công</button><button id=mA>⚡ Tự động</button></div><p class=hint id=hint></p></div>
+ <div class=row2>
+  <div class=card><h3>Ánh sáng</h3><div class=ring><svg width=170 height=170 viewBox="0 0 120 120"><circle class=bg cx=60 cy=60 r=52 /><circle class=fg id=fg cx=60 cy=60 r=52 stroke-dasharray="0 327" /></svg><div><b id=lx>0</b><span>lux</span></div></div>
+   <div class=c><span class=badge id=bg>--</span></div><div class=sens><div><b id=l1>0</b><span class=mu>Cảm biến 1</span></div><div><b id=l2>0</b><span class=mu>Cảm biến 2</span></div><div><b id=tg>0</b><span class=mu>Mục tiêu</span></div></div></div>
+  <div class=card><h3>Hiện diện</h3><div class=rad id=rad>👤</div><div class=c><b id=pt>--</b><span class=mu id=ps></span></div>
+   <div class=pw><div><span class=mu>Đèn bật</span><b id=cn>0/8</b></div><div style="text-align:right"><span class=mu>Công suất ≈</span><b id=pwr>0 W</b></div></div></div>
+ </div>
+ <div class=card><h3>Đèn phòng học</h3><div class=grid id=g></div><div class=acts><button class=btn id=aOn>Bật tất cả</button><button class="btn g" id=aOff>Tắt tất cả</button></div></div>
+</section>
+<section class=pg id=p2>
+ <div class=card><h3>Ánh sáng & cảm biến</h3>
+  <div class=fld><div><label>Lux mục tiêu</label><b id=tgV></b></div><input type=range id=tgI min=100 max=1000 step=10><span class=mu>Lớp học tiêu chuẩn: 300 – 500 lux</span></div>
+  <div class=fld><div><label>Tắt đèn sau khi vắng người</label><b id=vcV></b></div><input type=range id=vcI min=1 max=60></div>
+  <div class=tg><div>Chỉ bật khi có người<small class=mu>Cảm biến HLK-LD2420</small></div><label class=sw><input type=checkbox id=np><i></i></label></div></div>
+ <div class=card><h3>Hẹn giờ</h3>
+  <div class=tg><div>Bật hẹn giờ<small class=mu>Giờ Việt Nam – đồng bộ Internet</small></div><label class=sw><input type=checkbox id=sc><i></i></label></div>
+  <div class=f2><div class=fld><label>Giờ bắt đầu</label><input type=time id=on></div><div class=fld><label>Giờ kết thúc</label><input type=time id=off></div></div>
+  <span class=mu>Trong khung giờ này chế độ Tự động hoạt động. Hết giờ tất cả đèn tự tắt.</span></div>
+ <button class=btn id=sv>Lưu cài đặt</button>
+ <div class=card><h3>Thiết bị</h3><div class=kv><span>Địa chỉ IP</span><span id=ip></span></div><div class=kv><span>Tín hiệu WiFi</span><span id=rs></span></div><div class=kv><span>Cloud MQTT</span><span id=mq></span></div>
+  <div class=kv><span>Mã thiết bị</span><span id=tp></span></div><button class="btn g" id=cp style="margin-top:12px;width:100%">Sao chép mã thiết bị</button></div>
+</section></main>
+<nav><button class=on data-p=p1><span>🏠</span>Điều khiển</button><button data-p=p2><span>⚙️</span>Cài đặt</button></nav>
+<script>
+const $=i=>document.getElementById(i),LOCAL=location.protocol==='http:',WATT=36;let S=null,cli=null,base='',filled=false,fails=0;
+const BULB='<svg viewBox="0 0 24 24"><path d="M9 21h6v-1H9v1zm3-19a7 7 0 0 0-4 12.7V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.3A7 7 0 0 0 12 2z"/></svg>';
+$('g').innerHTML=[...Array(8)].map((_,i)=>`<button class=lamp data-i=${i}>${BULB}Đèn ${i+1}<small></small></button>`).join('');
+const buzz=()=>navigator.vibrate&&navigator.vibrate(12);
+function toast(t){$('toast').textContent=t;$('toast').classList.add('s');setTimeout(()=>$('toast').classList.remove('s'),1600)}
+async function send(o){buzz();if(LOCAL){await fetch('/api/cmd',{method:'POST',body:JSON.stringify(o)});poll()}else if(cli)cli.publish(base+'/cmd',JSON.stringify(o))}
+async function poll(){try{render(await(await fetch('/api/state')).json());fails=0}catch(e){if(++fails>2){$('off').hidden=false;$('dot').className='dot'}}}
+function render(s){S=s;$('off').hidden=true;$('dot').className='dot ok';const n=s.r.filter(x=>x).length,c=s.cfg;
+ $('tm').textContent=s.time.slice(0,5);$('mM').classList.toggle('on',!s.auto);$('mA').classList.toggle('on',s.auto);
+ $('hint').textContent=s.auto?(s.win?'Hệ thống tự điều chỉnh đèn theo ánh sáng và sự hiện diện.':'Ngoài khung giờ hẹn – đèn đang tắt.'):'Bạn tự bật/tắt từng đèn.';
+ const p=Math.min(s.avg/c.target,1.5)/1.5,st=s.avg<c.target*.9?['Thiếu sáng','var(--wn)']:s.avg>c.target*1.25?['Dư sáng','var(--ac)']:['Đạt yêu cầu','var(--ok)'];
+ $('fg').setAttribute('stroke-dasharray',`${p*327} 327`);$('fg').style.stroke=st[1];$('bg').textContent=st[0];$('bg').style.color=st[1];
+ $('lx').textContent=Math.round(s.avg);$('l1').textContent=Math.round(s.l1);$('l2').textContent=Math.round(s.l2);$('tg').textContent=c.target;
+ $('rad').classList.toggle('on',s.pres);$('pt').textContent=s.pres?'Có người':'Không có người';$('ps').textContent=s.pres?(s.dist?'Cách cảm biến '+s.dist+' cm':'Đang theo dõi'):'Phòng trống';
+ $('cn').textContent=n+'/8';$('pwr').textContent=n*WATT+' W';
+ document.querySelectorAll('.lamp').forEach((b,i)=>{b.classList.toggle('on',!!s.r[i]);b.disabled=s.auto;b.querySelector('small').textContent=s.r[i]?'Đang bật':'Tắt'});
+ $('aOn').disabled=$('aOff').disabled=s.auto;
+ $('ip').textContent=s.ip;$('rs').textContent=s.rssi+' dBm';$('mq').textContent=s.mq?'Đã kết nối':'Chưa kết nối';$('mq').style.color=s.mq?'var(--ok)':'var(--bd)';$('tp').textContent=s.topic;
+ if(!filled){filled=true;$('tgI').value=c.target;$('vcI').value=c.vac;$('np').checked=c.pres;$('sc').checked=c.sched;$('on').value=c.on;$('off').value=c.off;sl()}}
+const sl=()=>{$('tgV').textContent=$('tgI').value+' lux';$('vcV').textContent=$('vcI').value+' phút'};$('tgI').oninput=$('vcI').oninput=sl;
+$('g').onclick=e=>{const b=e.target.closest('.lamp');if(b&&S&&!S.auto)send({r:[+b.dataset.i,!S.r[b.dataset.i]]})};
+$('mM').onclick=()=>send({auto:false});$('mA').onclick=()=>send({auto:true});$('aOn').onclick=()=>send({all:true});$('aOff').onclick=()=>send({all:false});
+$('sv').onclick=()=>{send({cfg:{target:+$('tgI').value,vac:+$('vcI').value,pres:$('np').checked,sched:$('sc').checked,on:$('on').value,off:$('off').value}});toast('✓ Đã lưu cài đặt')};
+$('cp').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText(S.topic);toast('Đã sao chép')};
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button,.pg').forEach(x=>x.classList.remove('on'));b.classList.add('on');$(b.dataset.p).classList.add('on');scrollTo(0,0)});
+if(LOCAL){poll();setInterval(poll,1500)}else{ // Chế độ từ xa: host file này trên HTTPS (GitHub Pages...)
+ base='lophoc/000000';  // MÃ THIẾT BỊ (đổi nếu khác)
+ const host='broker.emqx.io';  // MQTT BROKER (đổi nếu dùng broker riêng)
+ const sc=document.createElement('script');sc.src='https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js';
+ sc.onload=()=>{cli=mqtt.connect('wss://'+host+':8084/mqtt');cli.on('connect',()=>cli.subscribe(base+'/state'));cli.on('message',(t,m)=>render(JSON.parse(m)))};document.head.appendChild(sc)}
+</script></body></html>
